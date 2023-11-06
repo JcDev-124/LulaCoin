@@ -1,0 +1,9 @@
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    login VARCHAR(255) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    cpf VARCHAR(11) NOT NULL,
+    saldo FLOAT DEFAULT 0.0,
+    public_key TEXT, -- Armazenará a chave pública
+    private_key TEXT -- Armazenará a chave privada
+);

@@ -1,1 +1,0 @@
-#Serviços do usuario, como validacao de uma chain etc

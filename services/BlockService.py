@@ -22,7 +22,6 @@ class BlockChain:
                 return False
             if(current_block.previous_hash != previous_block.hash):
                 return False
-
             return True
 
     def print_block(self):
