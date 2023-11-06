@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from domain.block import Block
+from domain.Block import Block
 
 class BlockChain:
     def __init__(self):
@@ -29,7 +29,7 @@ class BlockChain:
         for block in self.chain:
             print(f'Block: {block.index}')
             print(f'TimeStamp: {block.timestamp}')
-            print(f'Data: {block.data}')
+            print(f'Dado: {block.data}')
             print(f'Hash Atual: {block.hash}')
             print(f'Hash anterior: {block.previous_hash}')
             print(20*'----')

@@ -1,8 +1,8 @@
 from datetime import datetime
 
-from domain.block import Block
+from domain.Block import Block
 
-from services.blockchain import BlockChain
+from services.BlockService import BlockChain
 
 my_blockchain = BlockChain()
 
