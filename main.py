@@ -7,22 +7,17 @@ from services.blockchain import BlockChain
 my_blockchain = BlockChain()
 
 compra1 = {
-    'item': 'Ford',
-    'valor': 100,
-    'comprador': 'eu',
-    'vendedor': 'eutambem'
+    'Pagante': 'Julio',
+    'Recebedor': 'Kevin',
+    'Valor': 1,
 }
 
-compra2 = {
-    'item': 'Mustang',
-    'valor': 100,
-    'comprador': 'eu',
-    'vendedor': 'eutambem'
-}
+dificuldade = int(input("Digite a dificuldade: "))
+for i in range(dificuldade):
+    my_blockchain.add_block(Block(i + 1, datetime.now(), compra1, my_blockchain.chain[-1].hash))
 
-my_blockchain.add_block(Block(1, datetime.now(), compra1, my_blockchain.chain[-1].hash))
-my_blockchain.add_block(Block(2, datetime.now(), compra2, my_blockchain.chain[-1].hash))
 
-print(f'Essa blockchain esta valida?  {str(my_blockchain.is_valid())}')
 
 my_blockchain.print_block()
+
+print(f'Essa blockchain esta valida?  {str(my_blockchain.is_valid())}')
