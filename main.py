@@ -2,7 +2,7 @@ from datetime import datetime
 
 from domain.block import Block
 
-from domain.blockchain import BlockChain
+from services.blockchain import BlockChain
 
 my_blockchain = BlockChain()
 
