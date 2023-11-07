@@ -7,6 +7,3 @@ class UserService:
         self.db_connection.user_repository.create_user(login, senha, cpf, saldo)
 
 
-if __name__ == "__main__":
-    user_service = UserService()
-    user_service.create_user('usuario', 'senhaa', '1234', '1000')
