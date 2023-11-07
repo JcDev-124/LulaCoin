@@ -1,26 +1,11 @@
-from datetime import datetime
+from flask import Flask
+from controller.UserController import user_controller
 
-from domain.Block import Block
+app = Flask(__name__)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:admin@localhost/lulacoinsdb'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
-from services.BlockService import BlockChain
-from services.UserService import UserService
-my_blockchain = BlockChain()
-
-compra1 = {
-    'Pagante': 'Julio',
-    'Recebedor': 'Kevin',
-    'Valor': 1,
-}
-
-dificuldade = int(input("Digite a dificuldade: "))
-for i in range(dificuldade):
-    my_blockchain.add_block(Block(i + 1, datetime.now(), compra1, my_blockchain.chain[-1].hash))
-
-
-my_blockchain.print_block()
-
-print(f'Essa blockchain esta valida?  {str(my_blockchain.is_valid())}')
+app.register_blueprint(user_controller)
 
 if __name__ == "__main__":
-    user_service = UserService()
-    user_service.create_user('usuario', 'senhaa', '1234', '1000')
+    app.run(debug=True)

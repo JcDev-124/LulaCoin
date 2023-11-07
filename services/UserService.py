@@ -6,4 +6,7 @@ class UserService:
     def create_user(self, login, senha, cpf, saldo=0.0):
         self.db_connection.user_repository.create_user(login, senha, cpf, saldo)
 
+    def get_all_users(self):
+        return self.db_connection.user_repository.get_all_users()
+
 

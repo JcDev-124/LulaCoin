@@ -36,3 +36,9 @@ class UserRepository:
             user.saldo = new_saldo
             session.commit()
         session.close()
+
+    def get_all_users(self):
+        session = self.Session()
+        users = session.query(User).all()
+        session.close()
+        return users
