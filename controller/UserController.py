@@ -21,15 +21,24 @@ def get_all_users():
         user_list.append(user_dict)
     return jsonify(user_list)
 
+
 @user_controller.route("/users", methods=["POST"])
 def post_user():
     request_data = request.get_json()
-    if 'login' in request_data and 'password' in request_data and 'cpf' in request_data and 'saldo' in request_data:
-        login = request_data['login']
-        password = request_data['password']
-        cpf = request_data['cpf']
-        saldo = request_data['saldo']
-        user_service.create_user(login, password, cpf, saldo)
-        return jsonify({'message': 'Usuario inserido com sucesso'}), 201
+
+    # Verifique os campos obrigatórios
+    if 'login' not in request_data or 'password' not in request_data:
+        return jsonify({'message': 'Campos inválidos, verifique e tente novamente'}), 400
+
+    login = request_data['login']
+    password = request_data['password']
+
+    user = user_service.get_user_login(login)
+
+    if user is None:
+        return jsonify({'message': 'Usuário não existe'}), 404
+
+    if user.senha == password:
+        return jsonify({'message': 'Entrando'}), 200
     else:
-        return jsonify({'message': 'Campos invalidos, verifique e tente novamente'}), 400
+        return jsonify({'message': 'Senha incorreta'}), 404

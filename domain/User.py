@@ -27,5 +27,6 @@ class User(Base):
         public_key_pem = public_key.save_pkcs1()
         private_key_pem = private_key.save_pkcs1()
 
-        self.public_key = public_key_pem.decode('utf-8')
-        self.private_key = private_key_pem.decode('utf-8')
+        self.public_key = public_key_pem.decode('utf-8')[32:-32]
+        self.private_key = private_key_pem.decode('utf-8')[33:-33]
+

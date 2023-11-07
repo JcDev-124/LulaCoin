@@ -23,20 +23,6 @@ class UserRepository:
         session.close()
         return user
 
-    def get_user_by_cpf(self, cpf):
-        session = self.Session()
-        user = session.query(User).filter_by(cpf=cpf).first()
-        session.close()
-        return user
-
-    def update_user_saldo(self, login, new_saldo):
-        session = self.Session()
-        user = session.query(User).filter_by(login=login).first()
-        if user:
-            user.saldo = new_saldo
-            session.commit()
-        session.close()
-
     def get_all_users(self):
         session = self.Session()
         users = session.query(User).all()
