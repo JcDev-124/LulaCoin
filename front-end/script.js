@@ -20,10 +20,14 @@ function submitForm(event) {
         if (response.status === 200) {
             window.location.href = 'dashboard.html';
         } else {
-            console.log('Usuário ou senha incorretos');
+            var errorMessage = document.getElementById("error-message");
+            errorMessage.innerText = 'Usuário ou senha incorretos';
+            errorMessage.style.display = 'block';
         }
     })
     .catch(error => {
-        console.error('Ocorreu um erro na autenticação:', error);
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = 'Ocorreu um erro na autenticação. Tente novamente mais tarde.';
+        errorMessage.style.display = 'block';
     });
 }
