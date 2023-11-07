@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="pt-br" data-bs-theme="dark">
+<html lang="pt-br" data-bs-theme="light">
   <head>
 
     <meta charset="utf-8">
@@ -85,7 +85,14 @@
       .bd-mode-toggle {
         z-index: 1500;
       }
-    </style>
+      .form-floating {
+        margin-top: 10px;
+      }
+      #floatingPassword{
+        border-radius: 5px;
+      }   
+      
+      </style>
 
     <!-- Custom styles for this template -->
     <link href="sign-in.css" rel="stylesheet">
@@ -163,19 +170,19 @@
       <form id="loginForm" onsubmit="submitForm(event)">
         <div id="error-message" class="alert alert-danger" style="display: none;"></div>
 
-        <img class="mb-4" src="./Imagens/logopng.png" alt
-          width="128" height="180">
-        <h1 class="h3 mb-3 fw-normal">Angel Technology Service</h1>
+        <img class="mb-4" src="./Imagens/logo.png" alt
+          width="250" height="250">
+        <h1 class="h3 mb-3 fw-normal">Lula Coin(s)</h1>
 
         <div class="form-floating">
           <input type="text" class="form-control" id="floatingInput"
             placeholder="name">
-          <label for="floatingInput">Usuário</label>
+          <label for="floatingInput">Login</label>
         </div>
         <div class="form-floating">
           <input type="password" class="form-control" id="floatingPassword"
             placeholder="Password">
-          <label for="floatingPassword">Senha</label>
+          <label for="floatingPassword">Password</label>
         </div>
 
         <div class="form-check text-start my-3">
@@ -186,7 +193,6 @@
           </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
       </form>
     </main>
     <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
