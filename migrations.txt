@@ -11,3 +11,11 @@ CREATE TABLE users (
     public_key TEXT, -- Armazenará a chave pública
     private_key TEXT -- Armazenará a chave privada
 );
+
+CREATE TABLE transactions_pending(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    public_key TEXT, -- Armazenará a chave pública
+    private_key TEXT, -- Armazenará a chave privada
+    valor FLOAT DEFAULT 0.0,
+    taxa FLOAT DEFAULT 0.0
+);

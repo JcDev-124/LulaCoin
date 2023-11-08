@@ -4,7 +4,6 @@ from sqlalchemy.orm import sessionmaker
 
 from domain.User import User
 
-
 class UserRepository:
     def __init__(self, db_url):
         self.engine = create_engine(db_url)

@@ -42,3 +42,20 @@ def post_user():
         return jsonify({'message': 'Entrando'}), 200
     else:
         return jsonify({'message': 'Senha incorreta'}), 404
+
+@user_controller.route("/registerUser", methods=["POST"])
+def regist_user():
+    request_data = request.get_json()
+
+    # Verifique os campos obrigatórios
+    if 'login' not in request_data or 'password' not in request_data or 'cpf' not in request_data or 'saldo' not in request_data:
+        return jsonify({'message': 'Campos inválidos, verifique e tente novamente'}), 400
+
+    login = request_data['login']
+    password = request_data['password']
+    saldo = request_data['saldo']
+    cpf = request_data ['cpf']
+
+    user_service.create_user(login,password,saldo,cpf)
+    return jsonify({'message': 'Cadastrado'}), 200
+

@@ -1,10 +1,12 @@
+var data = null;
+
 function submitForm(event) {
     event.preventDefault(); // Impede o envio do formulário padrão
-    
+
     var username = document.getElementById("floatingInput").value;
     var password = document.getElementById("floatingPassword").value;
-    
-    var data = {
+
+    data = {
         login: username,
         password: password
     };
@@ -30,4 +32,7 @@ function submitForm(event) {
         errorMessage.innerText = 'Ocorreu um erro na autenticação. Tente novamente mais tarde.';
         errorMessage.style.display = 'block';
     });
+
+    console.log(data)
 }
+
