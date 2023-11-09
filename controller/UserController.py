@@ -54,7 +54,7 @@ def regist_user():
     login = request_data['login']
     password = request_data['password']
     saldo = request_data['saldo']
-    cpf = request_data ['cpf']
+    cpf = request_data['cpf']
 
     user_service.create_user(login,password,saldo,cpf)
     return jsonify({'message': 'Cadastrado'}), 200

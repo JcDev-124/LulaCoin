@@ -1,5 +1,7 @@
-
 from repository.UserRepository import UserRepository
+from repository.TransactionRepository import TransactionRepository
+
+
 
 class DatabaseConnection:
     _instance = None
@@ -14,3 +16,4 @@ class DatabaseConnection:
         with open('C:\\Users\\Julio\\PycharmProjects\\LulaCoin\\db_config.txt', 'r') as file:
             db_url = file.read().strip()
             self.user_repository = UserRepository(db_url)
+            self.transaction_repository = TransactionRepository(db_url)
