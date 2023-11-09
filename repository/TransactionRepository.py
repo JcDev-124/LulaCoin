@@ -12,3 +12,8 @@ class TransactionRepository:
         session.add(transaction)
         session.commit()
         session.close()
+    def return_transactions(self):
+        session = self.Session()
+        transactions = session.query(Transaction).all()
+        session.close()
+        return transactions
