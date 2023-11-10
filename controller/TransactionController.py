@@ -16,8 +16,20 @@ def created_transaction():
     taxa = request_data.get('taxa', 0.0)
     valor = request_data['valor']
 
-    transaction_service.create_transaction(public_key,private_key,taxa,valor)
-    return jsonify({'message': 'transacao criada'}), 200
+    validation = transaction_service.create_transaction(public_key,private_key,taxa,valor)
+    if(validation == 1):
+        return jsonify({'message': 'Destinatario nao existe'}), 404
+    elif validation == 2:
+        return jsonify({'message': 'Rementente nao existe'}), 404
+
+    elif validation == 3:
+        return jsonify({'message': 'Transacao invalida'}), 403
+
+    elif validation == 4:
+        return jsonify({'message': 'Saldo insuficiente'}), 403
+
+    return jsonify({'message': 'transacao criada'}), 201
+
 
 @transaction_controller.route("/transaction", methods=["GET"])
 def get_transactions():
@@ -31,7 +43,7 @@ def get_transactions():
             'valor': transaction.valor,
         }
         transaction_list.append(transaction_dict)
-    return jsonify(transaction_list)
+    return jsonify(transaction_list), 200
 
 
 

@@ -22,8 +22,37 @@ class UserRepository:
         session.close()
         return user
 
+    def get_user_by_key(self, public_key):
+        session = self.Session()
+        user = session.query(User).filter_by(public_key=public_key).first()
+        session.close()
+        return user
+
+    def get_user_by_key_private(self, private_key):
+        session = self.Session()
+        user = session.query(User).filter_by(private_key=private_key).first()
+        session.close()
+        return user
     def get_all_users(self):
         session = self.Session()
         users = session.query(User).all()
         session.close()
         return users
+
+    def update_user_balance_destinatario(self, public_key, new_balance):
+        session = self.Session()
+        user = session.query(User).filter_by(public_key=public_key).first()
+        if user:
+            user.saldo = new_balance + user.saldo
+            session.commit()
+
+        session.close()
+
+    def update_user_balance_remetente(self, private_key, new_balance):
+        session = self.Session()
+        user = session.query(User).filter_by(private_key=private_key).first()
+        if user:
+            user.saldo = user.saldo - new_balance
+            session.commit()
+
+        session.close()

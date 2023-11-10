@@ -19,7 +19,7 @@ def get_all_users():
             'PRIVATE_KEY': user.private_key
         }
         user_list.append(user_dict)
-    return jsonify(user_list)
+    return jsonify(user_list), 200
 
 
 @user_controller.route("/users", methods=["POST"])
@@ -56,6 +56,6 @@ def regist_user():
     saldo = request_data['saldo']
     cpf = request_data['cpf']
 
-    user_service.create_user(login,password,saldo,cpf)
-    return jsonify({'message': 'Cadastrado'}), 200
+    user_service.create_user(login,password,cpf,saldo)
+    return jsonify({'message': 'Cadastrado'}), 201
 
