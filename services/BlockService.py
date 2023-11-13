@@ -1,34 +1,14 @@
-from datetime import datetime
 
-from domain.Block import Block
+from database.Connection import DatabaseConnection
+
 
 class BlockChain:
     def __init__(self):
-        self.chain = [self.create_genesis_block()]
+        self.db_connection = DatabaseConnection()
 
-    def create_genesis_block(self):
-        return Block(0, datetime.now(), 'Genesis block', '0')
+    def add_block(self, data):
+        self.db_connection.block_repository.create_block(data)
 
-    def add_block(self, newBlock):
-        newBlock.previous_hash = self.chain[-1].hash
-        newBlock.hash = newBlock.calculate_hash()
-        self.chain.append(newBlock)
+    def return_blocos(self):
+        return self.db_connection.block_repository.return_blocos()
 
-    def is_valid(self):
-        for i in range(1, len(self.chain)):
-            current_block = self.chain[i]
-            previous_block = self.chain[i-1]
-            if(current_block.hash != current_block.calculate_hash()):
-                return False
-            if(current_block.previous_hash != previous_block.hash):
-                return False
-            return True
-
-    def print_block(self):
-        for block in self.chain:
-            print(f'Block: {block.index}')
-            print(f'TimeStamp: {block.timestamp}')
-            print(f'Dado: {block.data}')
-            print(f'Hash Atual: {block.hash}')
-            print(f'Hash anterior: {block.previous_hash}')
-            print(20*'----')

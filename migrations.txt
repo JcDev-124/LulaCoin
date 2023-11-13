@@ -19,3 +19,13 @@ CREATE TABLE transactions_pending(
     valor FLOAT DEFAULT 0.0,
     taxa FLOAT DEFAULT 0.0
 );
+
+CREATE TABLE Blocks (
+    id INTEGER PRIMARY KEY,
+    index INTEGER,
+    timestamp DATETIME,
+    data TEXT,
+    previous_hash TEXT,
+    hash TEXT
+);
+

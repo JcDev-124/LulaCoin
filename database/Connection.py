@@ -1,5 +1,6 @@
 from repository.UserRepository import UserRepository
 from repository.TransactionRepository import TransactionRepository
+from repository.BlockRepository import BlockRepository
 
 
 
@@ -17,3 +18,4 @@ class DatabaseConnection:
             db_url = file.read().strip()
             self.user_repository = UserRepository(db_url)
             self.transaction_repository = TransactionRepository(db_url)
+            self.block_repository = BlockRepository(db_url)

@@ -15,11 +15,10 @@ class TransactionService:
             return 1
         if remetente is None:
             return 2
-        if (destinatario.private_key == remetente.private_key):
+        if destinatario.private_key == remetente.private_key:
             return 3
         if remetente.saldo < valor:
             return 4
-
         self.db_connection.transaction_repository.create_transaction(public_key, private_key, taxa, valor)
         user_service.update_saldo_destinario(public_key, valor)
         user_service.update_saldo_remetente(private_key, valor)

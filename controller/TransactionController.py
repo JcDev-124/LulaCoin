@@ -19,6 +19,7 @@ def created_transaction():
     validation = transaction_service.create_transaction(public_key,private_key,taxa,valor)
     if(validation == 1):
         return jsonify({'message': 'Destinatario nao existe'}), 404
+
     elif validation == 2:
         return jsonify({'message': 'Rementente nao existe'}), 404
 
