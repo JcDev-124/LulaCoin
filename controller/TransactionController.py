@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify,request, Response
+from flask import Blueprint, jsonify,request
 from services.TransactionService import TransactionService
 
 transaction_controller = Blueprint('transaction', __name__)

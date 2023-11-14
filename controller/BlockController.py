@@ -1,5 +1,3 @@
-
-
 from flask import Blueprint, jsonify,request
 from services.BlockService import BlockChain
 from services.UserService import UserService
@@ -35,10 +33,14 @@ def get_blocos():
     blocos = block_service.return_blocos()
     blocos_list = []
     for block in blocos:
+        try:
+            dados_json = json.loads(block.data)
+        except json.JSONDecodeError:
+            dados_json = block.data
+
         blocos_dict = {
-            'posicao': block.posicao,
             'time': block.timestamp,
-            'dados': block.data,
+            'dados': dados_json,
             'previous_hash': block.previous_hash,
             'hash': block.hash
         }

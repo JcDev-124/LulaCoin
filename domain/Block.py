@@ -7,9 +7,7 @@ Base = declarative_base()
 
 class Block(Base):
     __tablename__ = 'Blocks'
-
     id = Column(Integer, Sequence('block_id_seq'), primary_key=True)
-    posicao = Column(Integer, Sequence('posicao_seq'), server_default="1", nullable=False)
     timestamp = Column(DateTime)
     data = Column(String)
     previous_hash = Column(String)
@@ -23,6 +21,6 @@ class Block(Base):
 
     def calculate_hash(self):
         sha = hashlib.sha256()
-        data_to_hash = f"{self.posicao}{self.timestamp}{self.data}{self.previous_hash}".encode('utf-8')
+        data_to_hash = f"{self.timestamp}{self.data}{self.previous_hash}".encode('utf-8')
         sha.update(data_to_hash)
         return sha.hexdigest()
