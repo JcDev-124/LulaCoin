@@ -12,3 +12,8 @@
     background-color: #7d45a0;
     /* Substitua com a cor desejada no hover */
 }
+
+
+.carousel-item{
+    right: 40px;
+}
