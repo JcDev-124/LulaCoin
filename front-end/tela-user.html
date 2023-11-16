@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="auto">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content>
+    <meta name="author"
+      content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.112.5">
+    <title>Lula-Coins</title>
+    <link rel="canonical"
+      href="https://getbootstrap.com/docs/5.3/examples/sidebars/">
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./style2.css" rel="stylesheet">
+    <link href="sidebars.css" rel="stylesheet">
+  </head>
+  <body>
+    <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+      <!-- SVG symbols here -->
+    </svg>
+
+    <main class="d-flex flex-nowrap">
+      <h1 class="visually-hidden">Sidebars examples</h1>
+      <div class="d-flex flex-column flex-shrink-0 p-3 text-bg-dark"
+        style="width: 280px; height: 100vh;" id="sidebar">
+        <a href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+          <svg class="bi pe-none me-2" width="40" height="32"><use
+              xlink:href="#bootstrap" /></svg>
+          <span class="fs-4">Sidebar</span>
+        </a>
+        <hr>
+        <ul class="nav nav-pills flex-column mb-auto">
+          <li class="nav-item">
+            <a href="#" class="nav-link active" aria-current="page">
+              <svg class="bi pe-none me-2" width="16" height="16"><use
+                  xlink:href="#home" /></svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use
+                  xlink:href="#speedometer2" /></svg>
+              Dashboard
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use
+                  xlink:href="#table" /></svg>
+              Orders
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use
+                  xlink:href="#grid" /></svg>
+              Products
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-link text-white">
+              <svg class="bi pe-none me-2" width="16" height="16"><use
+                  xlink:href="#people-circle" /></svg>
+              Customers
+            </a>
+          </li>
+        </ul>
+        <hr>
+        <div class="dropdown">
+          <a href="#"
+            class="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt width="32" height="32"
+              class="rounded-circle me-2">
+            <strong>mdo</strong>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <button id="sidebarToggle" class="btn btn-primary btn-carousel">Toggle
+        Sidebar</button>
+    </main>
+
+    <!-- Seção para mostrar o saldo -->
+    <div class="d-flex justify-content-center p-3">
+      <div class="text-white">
+        <h1 style="color: blueviolet;">Saldo</h1>
+        <h2 id="saldo" style="color: blueviolet;">R$ 0,00</h2>
+      </div>
+    </div>
+
+    <!-- Botão para fazer transações -->
+    <div class="d-flex justify-content-center p-3">
+      <button class="btn btn-success">Fazer Transação</button>
+    </div>
+
+    <!-- Carrossel com transações já feitas -->
+    <div class="container mt-4">
+      <h3>Transações Realizadas</h3>
+      <div id="carouselExample" class="carousel slide mt-4 d-flex flex-row" data-bs-ride="carousel">
+        
+          <button class="carousel-control-prev btn-carousel" type="button"
+            data-bs-target="#carouselExample" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+
+        <div class="carousel-inner d-flex justify-content-center">
+          <!-- Adicione itens do carrossel aqui -->
+          <div class="carousel-item active align-items-center">
+            <p>Transação 1</p>
+          </div>
+          <div class="carousel-item">
+            <p>Transação 2</p>
+          </div>
+          <!-- ... Adicione mais itens conforme necessário ... -->
+        </div>
+        
+          <button class="carousel-control-next btn-carousel" type="button"
+            data-bs-target="#carouselExample" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Próximo</span>
+          </button>
+
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#sidebarToggle").click(function() {
+          $("#sidebar").toggleClass("d-none");
+        });
+        var saldo = 100.00; // Substitua isso com a lógica para obter o saldo real
+        $("#saldo").text("R$ " + saldo.toFixed(2));
+      });
+      
+    </script>
+
+    <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="sidebars.js"></script>
+
+  </body>
+</html>

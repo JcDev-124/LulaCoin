@@ -1,0 +1,14 @@
+    /* Adicione estilos para a classe btn-carousel aqui */
+.btn-carousel {
+    background-color: #664caf;
+        /* Substitua com a cor desejada */
+    color: white;
+        /* Cor do texto do botão */
+    border: none;
+}
+
+    /* Estilo para alterar a cor quando o botão é hover (opcional) */
+.btn-carousel:hover {
+    background-color: #7d45a0;
+    /* Substitua com a cor desejada no hover */
+}
