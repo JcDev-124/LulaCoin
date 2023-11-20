@@ -17,17 +17,24 @@ function submitForm(event) {
         body: JSON.stringify(data)
     })
     .then(response => {
+        console.log('Status da resposta:', response.status);
+
         if (response.status === 200) {
-            window.location.href = 'dashboard.html';
+            return response.json();
         } else {
-            var errorMessage = document.getElementById("error-message");
-            errorMessage.innerText = 'Usuário ou senha incorretos';
-            errorMessage.style.display = 'block';
+            throw new Error('Authentication failed');
         }
     })
+    .then(user => {
+        console.log('Dados do usuário recebidos:', user);
+
+
+        window.location.href = 'dashboard.html';
+    })
     .catch(error => {
+        console.error('Erro:', error);
         var errorMessage = document.getElementById("error-message");
-        errorMessage.innerText = 'Ocorreu um erro na autenticação. Tente novamente mais tarde.';
+        errorMessage.innerText = 'Usuário ou senha incorretos';
         errorMessage.style.display = 'block';
     });
 }

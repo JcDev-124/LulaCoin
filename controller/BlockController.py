@@ -1,16 +1,21 @@
 from flask import Blueprint, jsonify,request
 from services.BlockService import BlockChain
 from services.UserService import UserService
+from services.TransactionService import TransactionService
 import json
 
 block_controller = Blueprint('block', __name__)
 
 block_service = BlockChain()
 user_service = UserService()
+transaction_service = TransactionService()
 @block_controller.route("/block", methods=["POST"])
 def post_block():
     if request.is_json:
         data = request.get_json()
+        objeto_string = json.dumps(data)
+        block_service.add_block(objeto_string)
+        transaction_service.delete_transcactions(data)
         if isinstance(data, list) and data:
             processed_data = []
             for obj in data:
@@ -21,8 +26,6 @@ def post_block():
                 valor = obj['valor']
                 user_service.update_saldo_remetente(private_key, valor)
                 user_service.update_saldo_destinario(public_key, valor)
-            objeto_string = json.dumps(data)
-            block_service.add_block(objeto_string)
             return jsonify({'message': 'Bloco validado'}), 201
         else:
             return jsonify({'error': 'Formato inválido ou lista vazia'}), 400

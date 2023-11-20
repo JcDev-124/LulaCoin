@@ -17,3 +17,26 @@ class TransactionRepository:
         transactions = session.query(Transaction).all()
         session.close()
         return transactions
+
+    def delete_transactions(self, transactions_to_delete):
+        session = self.Session()
+
+        try:
+            for transaction_data in transactions_to_delete:
+                id = transaction_data["cod"]
+
+                transaction = session.query(Transaction).filter_by(
+                    id=id,
+
+                ).first()
+                print(transaction)
+                if transaction:
+                    session.delete(transaction)
+
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            raise e
+        finally:
+            session.close()
+

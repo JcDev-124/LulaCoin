@@ -24,3 +24,5 @@ class TransactionService:
 
     def get_all(self):
         return self.db_connection.transaction_repository.return_transactions()
+    def delete_transcactions(self, data):
+        self.db_connection.transaction_repository.delete_transactions(data)

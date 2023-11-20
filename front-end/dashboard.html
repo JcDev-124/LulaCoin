@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>App de Banco</title>
+</head>
+<body>
+
+    <div class="app-container">
+
+        <div class="sidebar">
+            <h3>Menu</h3>
+            <ul>
+                <li>Chave Pública: <span class="publicKey"></span></li>
+                <li>CPF: <span class="cpf"></span></li>
+                <li>Saldo: R$<span class="saldo"></span></li>
+            </ul>
+        </div>
+
+        <div class="main-content">
+
+            <div class="balance-container">
+                <div class="centered">
+                    <h2>Saldo: R$1000,00</h2>
+                </div>
+                <div class="centered">
+                    <button id="transferButton">Enviar Transferência</button>
+                </div>
+            </div>
+
+            <div class="centered">
+                <h2>Transações Pendentes</h2>
+            </div>
+
+            <div class="transaction-container">
+
+                <div id="transactionList">
+                    <div class="transaction">
+                        <label>
+                            <input type="checkbox" class="transactionCheckbox">
+                            <div class="transaction-details">
+                                <div class="transaction-info">
+                                    <strong>Chave Pública:</strong> <span class="publicKey">1</span><br>
+                                    <strong>Assinatura Privada:</strong> <span class="privateKey">1</span><br>
+                                    <strong>Taxa do Minerador:</strong> <span class="minerFee">1</span><br>
+                                    <strong>Valor:</strong> <span class="value">1</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="transaction">
+                        <label>
+                            <input type="checkbox" class="transactionCheckbox">
+                            <div class="transaction-details">
+                                <div class="transaction-info">
+                                    <strong>Chave Pública:</strong> <span class="publicKey">1</span><br>
+                                    <strong>Assinatura Privada:</strong> <span class="privateKey">1</span><br>
+                                    <strong>Taxa do Minerador:</strong> <span class="minerFee">1</span><br>
+                                    <strong>Valor:</strong> <span class="value">1</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="transaction">
+                        <label>
+                            <input type="checkbox" class="transactionCheckbox">
+                            <div class="transaction-details">
+                                <div class="transaction-info">
+                                    <strong>Chave Pública:</strong> <span class="publicKey">1</span><br>
+                                    <strong>Assinatura Privada:</strong> <span class="privateKey">1</span><br>
+                                    <strong>Taxa do Minerador:</strong> <span class="minerFee">1</span><br>
+                                    <strong>Valor:</strong> <span class="value">1</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="transaction">
+                        <label>
+                            <input type="checkbox" class="transactionCheckbox">
+                            <div class="transaction-details">
+                                <div class="transaction-info">
+                                    <strong>Chave Pública:</strong> <span class="publicKey">1</span><br>
+                                    <strong>Assinatura Privada:</strong> <span class="privateKey">1</span><br>
+                                    <strong>Taxa do Minerador:</strong> <span class="minerFee">1</span><br>
+                                    <strong>Valor:</strong> <span class="value">1</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="transaction">
+                        <label>
+                            <input type="checkbox" class="transactionCheckbox">
+                            <div class="transaction-details">
+                                <div class="transaction-info">
+                                    <strong>Chave Pública:</strong> <span class="publicKey">1</span><br>
+                                    <strong>Assinatura Privada:</strong> <span class="privateKey">1</span><br>
+                                    <strong>Taxa do Minerador:</strong> <span class="minerFee">1</span><br>
+                                    <strong>Valor:</strong> <span class="value">1</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="transaction">
+                        <label>
+                            <input type="checkbox" class="transactionCheckbox">
+                            <div class="transaction-details">
+                                <div class="transaction-info">
+                                    <strong>Chave Pública:</strong> <span class="publicKey">1</span><br>
+                                    <strong>Assinatura Privada:</strong> <span class="privateKey">1</span><br>
+                                    <strong>Taxa do Minerador:</strong> <span class="minerFee">1</span><br>
+                                    <strong>Valor:</strong> <span class="value">1</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>s
+                    <div class="transaction">
+                        <label>
+                            <input type="checkbox" class="transactionCheckbox">
+                            <div class="transaction-details">
+                                <div class="transaction-info">
+                                    <strong>Chave Pública:</strong> <span class="publicKey">1</span><br>
+                                    <strong>Assinatura Privada:</strong> <span class="privateKey">1</span><br>
+                                    <strong>Taxa do Minerador:</strong> <span class="minerFee">1</span><br>
+                                    <strong>Valor:</strong> <span class="value">1</span>
+                                </div>
+                            </div>
+                        </label>
+                    </div>
+                    
+                </div>
+
+            </div>
+
+           
+            <div class="centered">
+                <button id="mineButton">Minerar</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    
+</body>
+<script src="script.js"></script>
+</html>

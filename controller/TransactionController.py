@@ -38,6 +38,7 @@ def get_transactions():
     transaction_list = []
     for transaction in transactions:
         transaction_dict = {
+            'cod': transaction.id,
             'public_key': transaction.public_key,
             'private_key': transaction.private_key,
             'taxa': transaction.taxa,

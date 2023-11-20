@@ -1,3 +1,5 @@
+import json
+
 from flask import Blueprint, jsonify,request, Response
 from services.UserService import UserService
 
@@ -26,7 +28,6 @@ def get_all_users():
 def post_user():
     request_data = request.get_json()
 
-    # Verifique os campos obrigatórios
     if 'login' not in request_data or 'password' not in request_data:
         return jsonify({'message': 'Campos inválidos, verifique e tente novamente'}), 400
 
@@ -35,11 +36,13 @@ def post_user():
 
     user = user_service.get_user_login(login)
 
+
     if user is None:
         return jsonify({'message': 'Usuário não existe'}), 404
 
     if user.senha == password:
-        return jsonify({'message': 'Entrando'}), 200
+        user_json = json.dumps(user.to_json())
+        return jsonify(user_json), 200
     else:
         return jsonify({'message': 'Senha incorreta'}), 404
 

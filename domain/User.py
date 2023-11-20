@@ -14,6 +14,9 @@ class User(Base):
     public_key = Column(String)
     private_key = Column(String)
 
+    def to_json(self):
+        return {"cpf": self.cpf, "saldo": self.saldo, "public_key": self.public_key, "private_key": self.private_key}
+
     def __init__(self, login, senha, cpf, saldo=0.0):
         self.login = login
         self.senha = senha
