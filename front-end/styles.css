@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -15,6 +17,7 @@ body {
     display: flex; 
     flex-direction: column; 
     align-items: center;
+    font-family: 'Playfair Display';
 }
 
 .logo {
@@ -24,6 +27,13 @@ body {
     margin-bottom: 10px; 
 }
 
+.box-saldo{
+    background-color: #f4f4f4;
+}
+
+.key{
+    border-radius: 20px;
+}
 
 .app-container {
     flex: 1;
