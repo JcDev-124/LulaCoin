@@ -12,28 +12,21 @@
 
         <div class="sidebar">
             <img src="Imagens/Logo.jpeg" class="logo">
-            <label for="chave">My Key:</label>
-            <input type="text" id="chave" value="123456789" readonly class = "key">
-            <button onclick="copiarChave()">Copiar Chave</button>
+            <div class="box-saldo">
+                <p class="saldo">LC 1000,00</p>
+            </div>
+            <button type="submit"  class="btn-side">Buy Coin</button>
+            <button type="submit"  class="btn-side">Extract</button>
+            <button type="submit"  class="btn-side">My Key</button>
+            <button type="submit"  class="btn-side">Transfer</button>
         </div>
 
         <div class="main-content">
 
-            <div class="balance-container">
-                <div class="centered">
-                    <h2>Saldo: R$1000,00</h2>
-                </div>
-                <div class="centered">
-                    <button id="transferButton">Enviar Transferência</button>
-                </div>
-            </div>
-
-            <div class="centered">
-                <h2>Transações Pendentes</h2>
-            </div>
-
             <div class="transaction-container">
-
+                <div class="centered">
+                    <h1>Pending Transactions</h1>
+                </div>
                 <div id="transactionList">
                     <div class="transaction">
                         <label>
