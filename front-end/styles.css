@@ -48,7 +48,7 @@ body {
 }
 
 .saldo{
-    font-size: 24px;
+    font-size: 3vh;
     font-weight: bolder;
 }
 
@@ -57,16 +57,17 @@ body {
     border-radius: 20px;
     width: 95%;
     margin-top: 20px;
+    justify-content: center;
     display: inline-block;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 2vh;
     text-align: center;
     text-decoration: none;
     color: white;
     border: 0px solid white;
     font-weight: bolder;
     transition: background-color 0.3s ease;
-  }
+}
 
   .btn-side:hover {
     background-color: #FFFDED; 
@@ -81,7 +82,7 @@ h1{
     overflow-y: auto; 
 }
 
-.balance-container,
+.app-container,.balance-container,
 .centered,
 .transaction-container,
 .mine-button-container {
@@ -100,7 +101,7 @@ h1{
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    height: 80vh;   
+    height: 50vh;   
     overflow-y: auto; 
 }
 
@@ -113,15 +114,16 @@ h1{
 .transaction {
     display: flex;
     flex-direction: row;
+    gap: 1%;
     margin-top: 10px;
-    padding: 15px;
+    padding: 5px;
     border: 1px solid #ddd;
     border-radius: 8px;
     background-color: #f9f9f9;
 }
 
 .transaction:hover{
-    background-color: #fce762;
+    background-color: #B7ADFF;
 }
 
 .btn-miners{
@@ -130,6 +132,30 @@ h1{
 
 .transactionCheckbox {
     margin-right: 10px;
+    width: 2%;
+}
+
+.miner-lula{
+    margin-top: 5vh;
+    width: 25vh;
+}
+
+.mine-button{
+
+    background-color: #4f4789;
+    border-radius: 20px;
+    width: 20%;
+    margin-top: 20px;
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    border: 0px solid white;
+    font-weight: bolder;
+    transition: background-color 0.3s ease;
+    
 }
 
 /*.transaction-details {
@@ -141,9 +167,7 @@ h1{
     flex: 1;
 }
 
-.mine-button-container {
-    margin-top: 20px;
-}
+
 
 button {
     padding: 10px;
@@ -154,6 +178,3 @@ button {
     cursor: pointer;
 }*/
 
-#mineButton{
-    margin-top: 20px;
-}
