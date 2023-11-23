@@ -9,6 +9,8 @@ block_controller = Blueprint('block', __name__)
 block_service = BlockChain()
 user_service = UserService()
 transaction_service = TransactionService()
+
+
 @block_controller.route("/block", methods=["POST"])
 def post_block():
     if request.is_json:
@@ -16,19 +18,23 @@ def post_block():
         objeto_string = json.dumps(data)
         block_service.add_block(objeto_string)
         transaction_service.delete_transcactions(data)
-        if isinstance(data, list) and data:
-            processed_data = []
-            for obj in data:
-                processed_data.append(obj)
-                public_key = obj['public_key']
-                private_key = obj['private_key']
-                taxa = obj['taxa']
-                valor = obj['valor']
+
+        key_minerador = data.get("key_minerador")
+        processed_data = {"transacoes": []}
+
+        if isinstance(data.get("transacoes"), list):
+            for obj in data["transacoes"]:
+                processed_data["transacoes"].append(obj)
+                public_key = obj.get('public_key')
+                private_key = obj.get('private_key')
+                taxa = obj.get('taxa')
+                valor = obj.get('valor')
                 user_service.update_saldo_remetente(private_key, valor)
                 user_service.update_saldo_destinario(public_key, valor)
-            return jsonify({'message': 'Bloco validado'}), 201
-        else:
-            return jsonify({'error': 'Formato inválido ou lista vazia'}), 400
+
+        user_service.update_saldo_destinario(key_minerador, valor * taxa)
+
+        return jsonify({'message': 'Bloco validado'}), 201
     else:
         return jsonify({'error': 'Requisição não contém dados JSON'}), 400
 @block_controller.route("/block", methods=["GET"])

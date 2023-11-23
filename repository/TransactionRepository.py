@@ -18,19 +18,18 @@ class TransactionRepository:
         session.close()
         return transactions
 
-    def delete_transactions(self, transactions_to_delete):
+    def delete_transactions(self, data):
         session = self.Session()
 
         try:
+            transactions_to_delete = data.get("transacoes", [])
+
             for transaction_data in transactions_to_delete:
-                id = transaction_data["cod"]
+                id = transaction_data.get("cod")
 
-                transaction = session.query(Transaction).filter_by(
-                    id=id,
-
-                ).first()
-                print(transaction)
-                if transaction:
+                # Exclui todas as transações com o código fornecido
+                transactions = session.query(Transaction).filter_by(id=id).all()
+                for transaction in transactions:
                     session.delete(transaction)
 
             session.commit()
@@ -39,4 +38,5 @@ class TransactionRepository:
             raise e
         finally:
             session.close()
+
 

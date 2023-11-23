@@ -1,6 +1,6 @@
 import json
 
-from flask import Blueprint, jsonify,request, Response
+from flask import Blueprint, jsonify, request, Response, render_template_string
 from services.UserService import UserService
 
 user_controller = Blueprint('user', __name__)
