@@ -1,4 +1,4 @@
-function submitForm(event) {
+        function submitForm(event) {
             event.preventDefault(); // Impede o envio do formulário padrão
 
             var username = document.getElementById("floatingInput").value;
@@ -38,3 +38,18 @@ function submitForm(event) {
                 errorMessage.style.display = 'block';
             });
         }
+
+        document.getElementById('abrirFormulario').addEventListener('click', function() {
+            document.getElementById('formularioModal').style.display = 'block';
+          });
+          
+          document.getElementById('fecharFormulario').addEventListener('click', function() {
+            document.getElementById('formularioModal').style.display = 'none';
+          });
+          
+          // Fechar o formulário se o usuário clicar fora dele
+          window.addEventListener('click', function(event) {
+            if (event.target == document.getElementById('formularioModal')) {
+              document.getElementById('formularioModal').style.display = 'none';
+            }
+          });
