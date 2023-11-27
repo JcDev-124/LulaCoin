@@ -1,3 +1,4 @@
+#Trato com o banco de dados
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from domain.Transaction import Transaction

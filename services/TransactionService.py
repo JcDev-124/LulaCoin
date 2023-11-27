@@ -1,4 +1,4 @@
-
+#Validação antes de entrar no banco de dados
 
 from database.Connection import DatabaseConnection
 from services.UserService import UserService

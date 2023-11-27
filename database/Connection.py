@@ -14,6 +14,7 @@ class DatabaseConnection:
         return cls._instance
 
     def initialize_connection(self):
+        #Mudar o URL abaixo para o local do arquivo db_config.txt
         with open('C:\\Users\\Julio\\PycharmProjects\\LulaCoin\\db_config.txt', 'r') as file:
             db_url = file.read().strip()
             self.user_repository = UserRepository(db_url)

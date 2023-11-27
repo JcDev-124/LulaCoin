@@ -23,7 +23,7 @@ def get_all_users():
         user_list.append(user_dict)
     return jsonify(user_list), 200
 
-
+#Logar Usuário -> Login e senha
 @user_controller.route("/users", methods=["POST"])
 def post_user():
     request_data = request.get_json()
@@ -46,6 +46,7 @@ def post_user():
     else:
         return jsonify({'message': 'Senha incorreta'}), 404
 
+#Criar usuário -> Login, Senha e cpf e saldo
 @user_controller.route("/registerUser", methods=["POST"])
 def regist_user():
     request_data = request.get_json()

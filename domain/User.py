@@ -7,11 +7,12 @@ Base = declarative_base()
 class User(Base):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
-    login = Column(String, unique=True, nullable=False)
-    senha = Column(String, nullable=False)
+    login = Column(String, unique=True, nullable=False) #Qualquer String
+    senha = Column(String, nullable=False) 
     cpf = Column(String, unique=True, nullable=False)
     saldo = Column(Float, default=0.0)
-    public_key = Column(String)
+    #Gera para o usuário quando é criado
+    public_key = Column(String) 
     private_key = Column(String)
 
     def to_json(self):

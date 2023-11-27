@@ -5,6 +5,7 @@ transaction_controller = Blueprint('transaction', __name__)
 
 transaction_service = TransactionService()
 
+#Chave Pública destinatário, Valor, Taxa(0 a 1)
 @transaction_controller.route("/transaction", methods = ["POST"])
 def created_transaction():
     request_data = request.get_json()
@@ -31,7 +32,7 @@ def created_transaction():
 
     return jsonify({'message': 'transacao criada'}), 201
 
-
+#Pega Todas as transações pendentes (criar um botão para atualizar)
 @transaction_controller.route("/transaction", methods=["GET"])
 def get_transactions():
     transactions = transaction_service.get_all()

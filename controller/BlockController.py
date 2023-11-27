@@ -12,6 +12,7 @@ transaction_service = TransactionService()
 
 
 @block_controller.route("/block", methods=["POST"])
+#Função para a mineração (endpoint)-> Lista de Transações e a chave Minerador
 def post_block():
     if request.is_json:
         data = request.get_json()
