@@ -39,6 +39,50 @@
             });
         }
 
+        function NewUser(event) {
+            event.preventDefault(); 
+
+            var username = document.getElementById("NewLogin").value;
+            var password = document.getElementById("NewPassword").value;
+            var cpf = document.getElementById("NewCpf").value;
+
+            var data = {
+                login: username,
+                password: password,
+                cpf: cpf,
+                saldo: 1000
+            };
+
+            fetch('http://localhost:5000/users', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                alert('Status da resposta:', response.status);
+
+                if (response.status === 200) {
+                    return response.json();
+                } else {
+                    throw new Error('Authentication failed');
+                }
+            })
+            .then(user => {
+                console.log('Dados do usuário recebidos:', user);
+
+
+                window.location.href = 'dashboard.html';
+            })
+            .catch(error => {
+                console.error('Erro:', error);
+                var errorMessage = document.getElementById("error-message");
+                errorMessage.innerText = 'Usuário ou senha incorretos';
+                errorMessage.style.display = 'block';
+            });
+        }
+
         document.getElementById('abrirFormulario').addEventListener('click', function() {
             document.getElementById('formularioModal').style.display = 'block';
           });

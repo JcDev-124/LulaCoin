@@ -1,18 +1,12 @@
 <!doctype html>
 <html lang="pt-br" data-bs-theme="light">
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content>
-    <meta name="author"
-      content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.112.5">
     <title>Login</title>
-
-
     <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="./temaScript.js"></script>
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -82,22 +76,67 @@
         --bs-btn-active-bg: #5a23c8;
         --bs-btn-active-border-color: #5a23c8;
       }
+
       .bd-mode-toggle {
         z-index: 1500;
       }
+
       .form-floating {
         margin-top: 10px;
       }
+
       #floatingPassword{
         border-radius: 5px;
       }   
-      
-      </style>
 
-    <!-- Custom styles for this template -->
+      .btn-register{
+          background-color: transparent;
+          border: none;
+          margin-top: 5%;
+      }
+      
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+      }
+    
+      .modal-content {
+        background-color: transparent;
+        margin: 0% auto; 
+        margin-left: 75%; 
+        padding: 10px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
+        width: 25%;
+        height: 100%;
+        border-radius: 0px;
+        backdrop-filter: blur(5px);
+      }
+
+      .formulario{
+        display: block;
+      }
+
+      .txt-cad{
+        margin-top: 15%;
+        margin-bottom: 10%;
+      }
+
+      .espacamento{
+        margin-top: 15%;
+      }
+
+  
+    </style>
+
+    <!-- CSS personalizado -->
     <link href="sign-in.css" rel="stylesheet">
   </head>
+  
   <body class="d-flex align-items-center py-4 bg-body-tertiary">
+
+    <!-- Tema 
     <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
       <symbol id="check2" viewBox="0 0 16 16">
         <path
@@ -165,23 +204,24 @@
         </li>
       </ul>
     </div>
-
+    -->
     <main class="form-signin w-100 m-auto text-center">
+
+      <!-- Fomulário de Login-->
       <form id="loginForm" onsubmit="submitForm(event)">
-        <div id="error-message" class="alert alert-danger" style="display: none;"></div>
+        <!-- <div id="error-message" class="alert alert-danger" style="display: none;"></div> -->
 
         <img class="mb-4" src="./Imagens/logo.png" alt
-          width="250" height="250">
+          width="200" height="200">
         <h1 class="h3 mb-3 fw-normal">Lula Coin(s)</h1>
 
         <div class="form-floating">
-          <input type="text" class="form-control" id="floatingInput"
-            placeholder="name">
+          <input type="text" class="form-control" id="floatingInput" placeholder="name">
           <label for="floatingInput">Login</label>
         </div>
+
         <div class="form-floating">
-          <input type="password" class="form-control" id="floatingPassword"
-            placeholder="Password">
+          <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
           <label for="floatingPassword">Password</label>
         </div>
 
@@ -193,6 +233,36 @@
           </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
+        <button class="btn-register" type="submit" id="abrirFormulario">Register</button>
+
+        <!-- Formulário de Cadastro -->
+        <div id="formularioModal" class="modal" onsubmit="NewUser(event)">
+          <div class="modal-content">
+            <div class="txt-cad">
+              <span class="fechar" id="fecharFormulario"></span>
+              <h2 class="h3 mb-3 fw-normal">New User</h2>
+            </div>
+            <form id="meuFormulario" class="formulario">
+              <div class="form-floating">
+                <input type="text" class="form-control" id="NewLogin"
+                  placeholder="login">
+                <label for="floatingInput">Login</label>
+              </div>
+              <div class="form-floating">
+                <input type="password" class="form-control" id="NewPassword"
+                  placeholder="Password">
+                <label for="floatingPassword">Password</label>
+                <div class="form-floating">
+                  <input type="text" class="form-control" id="NewCpf"
+                    placeholder="Cpf">
+                  <label for="floatingInput">Cpf</label>
+                </div>
+                <div class="espacamento">
+                  <button class="btn btn-primary w-100 py-2"  type="submit">Register</button>
+                </div>
+            </form>
+          </div>
+        </div>
       </form>
     </main>
     <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
