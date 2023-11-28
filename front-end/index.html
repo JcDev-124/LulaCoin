@@ -104,7 +104,7 @@
     
       .modal-content {
         background-color: transparent;
-        margin: 0% auto; 
+        margin: auto; 
         margin-left: 75%; 
         padding: 10px;
         box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.5);
@@ -206,10 +206,11 @@
     </div>
     -->
     <main class="form-signin w-100 m-auto text-center">
-
       <!-- Fomulário de Login-->
       <form id="loginForm" onsubmit="submitForm(event)">
-        <!-- <div id="error-message" class="alert alert-danger" style="display: none;"></div> -->
+        <div id="error-message" class="alert alert-danger" style="display: none;"></div> 
+        <div id="success-message" class="alert alert-success" style="display: none;"></div>
+
 
         <img class="mb-4" src="./Imagens/logo.png" alt
           width="200" height="200">
@@ -233,8 +234,8 @@
           </label>
         </div>
         <button class="btn btn-primary w-100 py-2" type="submit">Sign in</button>
-        <button class="btn-register" type="submit" id="abrirFormulario">Register</button>
-
+      </form>
+      <button class="btn-register" type="submit" id="abrirFormulario">Register</button>
         <!-- Formulário de Cadastro -->
         <div id="formularioModal" class="modal" onsubmit="NewUser(event)">
           <div class="modal-content">
@@ -263,7 +264,6 @@
             </form>
           </div>
         </div>
-      </form>
     </main>
     <script src="./assets/dist/js/bootstrap.bundle.min.js"></script>
     <script src="./script.js"></script>

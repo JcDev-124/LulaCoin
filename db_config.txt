@@ -1,1 +1,1 @@
-mysql://root:admin@localhost/lulacoinsdb
+mysql://root:1234@localhost/lulacoinsdb

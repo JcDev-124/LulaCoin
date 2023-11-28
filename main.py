@@ -7,7 +7,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:admin@localhost/lulacoinsdb'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:1234@localhost/lulacoinsdb'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 
 app.register_blueprint(user_controller)

@@ -22,7 +22,6 @@ CREATE TABLE transactions_pending(
 
 CREATE TABLE Blocks (
     id INTEGER PRIMARY KEY,
-    index INTEGER,
     timestamp DATETIME,
     data TEXT,
     previous_hash TEXT,
