@@ -17,12 +17,20 @@ class BlockRepository:
             new_block = Block(data, previous_hash)
             session.add(new_block)
             session.commit()
+            created_block_data = {
+                'hash': new_block.hash
+            }
             session.close()
+            return created_block_data
         else:
             new_block = Block(data, "0")
             session.add(new_block)
             session.commit()
+            created_block_data = {
+                'hash': new_block.hash
+            }
             session.close()
+            return created_block_data
 
 
     def return_blocos(self):
