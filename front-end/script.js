@@ -126,6 +126,7 @@ function NewTransfer(event) {
             return response.json();
         } else {
             throw new Error('Ocorreu um erro no cadastro');
+            console.log(public_key)
         }
     })
     .then(user => {
