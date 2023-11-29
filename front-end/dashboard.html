@@ -3,11 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="sign-in.css" rel="stylesheet">
+    <link href="./assets/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="./temaScript.js"></script>
     <link rel="stylesheet" href="styles.css">
-    <title>Dash Board</title>
+    <title>Dashboard</title>
+
+    <link href="sign-in.css" rel="stylesheet">
 </head>
 <body>
-    
      <div class="app-container">
 
         <div class="sidebar">
@@ -15,13 +19,13 @@
             <div class="box-saldo">
                 <p class="saldo" id="sald"></p>
             </div>
-            <button type="submit"  class="btn-side">Buy Coin</button>
-            <button type="submit"  class="btn-side">Extract</button>
-            <button type="submit"  class="btn-side">My Key</button>
-            <button type="submit"  class="btn-side" id="abrirFormulario">Transfer</button>
+            <button class="btn-side">My Key</button>
+            <button class="btn-side" id="abrirFormulario">Transfer</button>
         </div>
 
         <div class="main-content">
+            <div id="error-message" class="alert alert-danger" style="display: none;"></div> 
+            <div id="success-message" class="alert alert-success" style="display: none;"></div>
 
             <div class="transaction-container">
                 <div class="centered">
@@ -67,19 +71,19 @@
                     </div>
             </div>
 
-            <div id="formularioModal" class="modal">
+            <div id="formularioModal" class="modal" onsubmit="NewTransfer(event)">
                 <div class="modal-content">
                 <span class="fechar" id="fecharFormulario">&times;</span>
                 <h2>Transfer</h2>
                 <form id="meuFormulario" class="formulario">
                     <div class="campos">
-                        <input type="text" id="campo1" name="campo1" placeholder="Receiver" required class="ipt">
+                        <input type="text" id="ReceiverKey" placeholder="Receiver" required class="ipt">
                     </div>
                     <div class="campos">
-                        <input type="text" id="campo2" name="campo2" placeholder="Password" required class="ipt">
+                        <input type="text" id="TransPassword"  placeholder="Password" required class="ipt">
                     </div>
                     <div class="campos">
-                    <input type="text" id="campo3" name="campo3" placeholder="Value" required class="ipt">
+                    <input type="text" id="TransValor"  placeholder="Value" required class="ipt">
                 </div>
                     <input type="submit" value="Enviar" class="btn-side">
                 </form>

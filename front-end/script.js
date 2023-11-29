@@ -28,8 +28,8 @@ function submitForm(event) {
         let dados = JSON.parse(user);
         sessionStorage.setItem('cpf', dados.cpf);
         sessionStorage.setItem('saldo', dados.saldo);
-        sessionStorage.setItem('public', dados.saldo);
-        sessionStorage.setItem('private', dados.saldo);
+        sessionStorage.setItem('public', dados.public_key);
+        sessionStorage.setItem('private', dados.private_key);
         window.location.href = 'dashboard.html';
     })
     .catch(error => {
@@ -40,47 +40,88 @@ function submitForm(event) {
     });
 }
 
-        function NewUser(event) {
-            event.preventDefault(); 
+function NewUser(event) {
+    event.preventDefault(); 
         
-            var username = document.getElementById("NewLogin").value;
-            var password = document.getElementById("NewPassword").value;
-            var cpf = document.getElementById("NewCpf").value;
+    var username = document.getElementById("NewLogin").value;
+    var password = document.getElementById("NewPassword").value;
+    var cpf = document.getElementById("NewCpf").value;
         
-            var data = {
-                login: username,
-                password: password,
-                cpf: cpf,
-                saldo: 1000
-            };
+    var data = {
+        login: username,
+        password: password,
+        cpf: cpf,
+        saldo: 1000
+    };
         
-            fetch('http://localhost:5000/registerUser', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                if (response.status === 201) {
-                    return response.json();
-                } else {
-                    throw new Error('Ocorreu um erro no cadastro');
-                }
-            })
-            .then(user => {
-                var successMessage = document.getElementById("success-message");
-                successMessage.innerText = 'Cadastro efetuado com sucesso!';
-                successMessage.style.display = 'block';
-                
-            })
-            .catch(error => {
-                console.error('Erro:', error);
-                var errorMessage = document.getElementById("error-message");
-                errorMessage.innerText = 'Ocorreu um erro no cadastro.';
-                errorMessage.style.display = 'block';
-            });
+    fetch('http://localhost:5000/registerUser', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.status === 201) {
+            return response.json();
+        } else {
+            throw new Error('Ocorreu um erro no cadastro');
         }
+    })
+    .then(user => {
+        var successMessage = document.getElementById("success-message");
+        successMessage.innerText = 'Cadastro efetuado com sucesso!';
+        successMessage.style.display = 'block';
+                
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = 'Ocorreu um erro no cadastro.';
+        errorMessage.style.display = 'block';
+    });
+}
+
+function NewTransfer(event) {
+    event.preventDefault(); 
+        
+    var receiverKey = document.getElementById("ReceiverKey").value;
+    var password = document.getElementById("TransPassword").value;
+    var value = document.getElementById("TransValor").value;
+        
+    var data = {
+        public_key: receiverKey,
+        private_key: password,
+        valor: value
+    };
+        
+    fetch('http://localhost:5000/transaction', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.status === 201) {
+            return response.json();
+        } else {
+            throw new Error('Ocorreu um erro no cadastro');
+        }
+    })
+    .then(user => {
+        var successMessage = document.getElementById("success-message");
+        successMessage.innerText = 'Transferência efetuada e aguardando validação!';
+        successMessage.style.display = 'block';
+                
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = 'Transferência Falhou';
+        errorMessage.style.display = 'block';
+    });
+}
         
         //Funções de interface
         document.getElementById('abrirFormulario').addEventListener('click', function() {
@@ -103,9 +144,11 @@ function submitForm(event) {
             var cpf = sessionStorage.getItem('cpf');
             var saldo = sessionStorage.getItem('saldo');
             var sald= document.getElementById('sald');
-            sald.innerText = 'Lc ' + saldo;
+            sald.innerText = 'LC ' + saldo;
             var publicData = sessionStorage.getItem('public');
             var privateData = sessionStorage.getItem('private');
+            var pass = document.getElementById('TransPassword');
+            pass.value = privateData;
         
             // Faça o que for necessário com os dados recuperados
             console.log('CPF:', cpf);
@@ -113,10 +156,10 @@ function submitForm(event) {
             console.log('Public:', publicData);
             console.log('Private:', privateData);
         
-            // Limpe os dados da sessionStorage se necessário
+            /* Limpe os dados da sessionStorage se necessário
             sessionStorage.removeItem('cpf');
             sessionStorage.removeItem('saldo');
             sessionStorage.removeItem('public');
-            sessionStorage.removeItem('private');
+            sessionStorage.removeItem('private');*/
         });
         

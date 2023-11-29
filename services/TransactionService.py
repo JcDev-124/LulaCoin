@@ -17,7 +17,7 @@ class TransactionService:
             return 2
         if destinatario.private_key == remetente.private_key:
             return 3
-        if remetente.saldo < valor:
+        if float(remetente.saldo) < float(valor):
             return 4
         self.db_connection.transaction_repository.create_transaction(public_key, private_key, taxa, valor)
         return 5
