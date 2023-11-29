@@ -79,7 +79,9 @@ h1{
 .main-content {
     flex: 1;
     padding: 20px;
-    overflow-y: auto; 
+    overflow-y: auto;
+    margin-top: 60px;
+   
 }
 
 .app-container,.balance-container,
@@ -233,3 +235,12 @@ h1{
     color: #4f4789;
   }
 
+
+
+  .alert {
+    position: absolute;
+    top: 15px; 
+    left: 400px; 
+    width: 60%; 
+    z-index: 1000; 
+}
