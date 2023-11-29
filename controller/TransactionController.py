@@ -22,7 +22,7 @@ def created_transaction():
         return jsonify({'message': 'Destinatario nao existe'}), 404
 
     elif validation == 2:
-        return jsonify({'message': 'Rementente nao existe'}), 407
+        return jsonify({'message': 'Rementente nao existe'}), 404
 
     elif validation == 3:
         return jsonify({'message': 'Transacao invalida'}), 403

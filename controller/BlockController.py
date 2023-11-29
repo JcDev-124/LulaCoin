@@ -16,10 +16,10 @@ def post_block():
     if request.is_json:
         data = request.get_json()
         objeto_string = json.dumps(data)
-        hash = block_service.add_block(objeto_string).get('hash')
-        print(hash)
-        nonce_found = block_service.break_hash(hash)
-        print("Nonce encontrado: ", nonce_found)
+        #hash = block_service.add_block(objeto_string).get('hash')
+        #print(hash)
+        #nonce_found = block_service.break_hash(hash)
+        #print("Nonce encontrado: ", nonce_found)
         transaction_service.delete_transcactions(data)
 
         key_minerador = data.get("key_minerador")

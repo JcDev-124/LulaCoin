@@ -1,3 +1,8 @@
+//Variáveis Globais
+var allTransactions = [];
+var transactionsSelected =[];
+
+//Requisições
 function submitForm(event) {
     event.preventDefault(); 
 
@@ -30,6 +35,7 @@ function submitForm(event) {
         sessionStorage.setItem('saldo', dados.saldo);
         sessionStorage.setItem('public', dados.public_key);
         sessionStorage.setItem('private', dados.private_key);
+        console.log(dados);
         window.location.href = 'dashboard.html';
     })
     .catch(error => {
@@ -88,10 +94,12 @@ function NewTransfer(event) {
     var receiverKey = document.getElementById("ReceiverKey").value;
     var password = document.getElementById("TransPassword").value;
     var value = document.getElementById("TransValor").value;
+    var taxa = 0.01;
         
     var data = {
         public_key: receiverKey,
         private_key: password,
+        taxa: taxa,
         valor: value
     };
         
@@ -111,7 +119,7 @@ function NewTransfer(event) {
     })
     .then(user => {
         var successMessage = document.getElementById("success-message");
-        successMessage.innerText = 'Transferência efetuada e aguardando validação!';
+        successMessage.innerText = 'Transferência efetuada aguarde a validação!';
         successMessage.style.display = 'block';
                 
     })
@@ -122,7 +130,76 @@ function NewTransfer(event) {
         errorMessage.style.display = 'block';
     });
 }
-        
+
+function GetTransfer(event) {
+    event.preventDefault();
+
+    fetch('http://localhost:5000/transaction', {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            throw new Error('Ocorreu um erro na transferência');
+        }
+    })
+    .then(transactions => {
+        allTransactions = transactions;
+        renderTransactions(transactions);
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = 'Falha ao carregar as transferências';
+        errorMessage.style.display = 'block';
+    });
+}
+
+function Mine(event) {
+    event.preventDefault();
+
+    var transactions = transactionsSelected;
+    console.log(transactions);
+    var publicData = sessionStorage.getItem('public');
+
+    var data = {
+        transacoes: transactions,
+        key_minerador: publicData
+    };
+
+    console.log(JSON.stringify(data));
+
+    fetch('http://localhost:5000/block', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => {
+        if (response.status === 201) {
+            return response.json();
+        } else {
+            throw new Error('Falha');
+        }
+    })
+    .then(user => {
+        var successMessage = document.getElementById("success-message");
+        successMessage.innerText = 'Mineração feita com Sucesso!';
+        successMessage.style.display = 'block';
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+        var errorMessage = document.getElementById("error-message");
+        errorMessage.innerText = 'Mineração Falhou';
+        errorMessage.style.display = 'block';
+    });
+}
+
         //Funções de interface
         document.getElementById('abrirFormulario').addEventListener('click', function() {
             document.getElementById('formularioModal').style.display = 'block';
@@ -163,3 +240,51 @@ function NewTransfer(event) {
             sessionStorage.removeItem('private');*/
         });
         
+//Botões
+var btnTransfer = document.getElementById("btnReload");
+btnTransfer.addEventListener("click", GetTransfer);
+
+var btnMine = document.getElementById("mine-button");
+btnMine.addEventListener("click", Mine);
+
+
+
+function renderTransactions(transactions) {
+    // Obtenha o contêiner onde as transações serão exibidas
+    var transactionContainer = document.getElementById("transactionList");
+    transactionContainer.innerHTML = '';
+    
+    transactions.forEach(transaction => {
+        var transactionElement = document.createElement("div");
+        transactionElement.classList.add("transaction");
+        // Ajuste no ID do checkbox para usar transaction.cod
+        transactionElement.innerHTML = `
+            <input type="checkbox" id="transaction-${transaction.cod}" class="transactionCheckbox" onchange="handleCheckboxChange(${transaction.cod})">
+            <p>ID: ${transaction.cod} Reward: ${transaction.taxa * transaction.valor}</p>
+        `;
+        
+        transactionContainer.appendChild(transactionElement);
+    });
+}
+
+function handleCheckboxChange(transactionId) {
+    var checkbox = document.getElementById(`transaction-${transactionId}`);
+    
+    if (checkbox.checked) {
+        // Ajuste para procurar a transação usando transaction.cod
+        var selectedTransaction = allTransactions.find(transaction => transaction.cod === transactionId);
+        
+        // Adiciona a transação ao array global 'transactionsSelected'
+        transactionsSelected.push(selectedTransaction);
+        
+        // Exibe as transações selecionadas no console (você pode personalizar conforme necessário)
+        console.log("Transações Selecionadas:", transactionsSelected);
+    } else {
+        // Se o checkbox foi desmarcado, remove a transação do array 'transactionsSelected'
+        transactionsSelected = transactionsSelected.filter(transaction => transaction.cod !== transactionId);
+        
+        // Exibe as transações selecionadas no console (você pode personalizar conforme necessário)
+        console.log("Transações Selecionadas:", transactionsSelected);
+    }
+}
+
