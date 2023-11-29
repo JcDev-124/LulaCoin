@@ -2,8 +2,8 @@
 var allTransactions = [];
 var transactionsSelected =[];
 
-//Requisições
-function submitForm(event) {
+//Requests
+function Login(event) {
     event.preventDefault(); 
 
     var username = document.getElementById("floatingInput").value;
@@ -22,7 +22,6 @@ function submitForm(event) {
         body: JSON.stringify(data)
     })
     .then(response => {
-        console.log('Status da resposta:', response.status);
         if (response.status === 200) {
             return response.json();
         } else {
@@ -35,14 +34,17 @@ function submitForm(event) {
         sessionStorage.setItem('saldo', dados.saldo);
         sessionStorage.setItem('public', dados.public_key);
         sessionStorage.setItem('private', dados.private_key);
-        console.log(dados);
         window.location.href = 'dashboard.html';
     })
     .catch(error => {
         console.error('Erro:', error);
         var errorMessage = document.getElementById("error-message");
-        errorMessage.innerText = 'Usuário ou senha incorretos';
+        errorMessage.innerText = 'Incorrect username or password';
         errorMessage.style.display = 'block';
+
+        setTimeout(function () {
+            errorMessage.style.display = 'none';
+        }, 3000);
     });
 }
 
@@ -78,6 +80,10 @@ function NewUser(event) {
         var successMessage = document.getElementById("success-message");
         successMessage.innerText = 'Cadastro efetuado com sucesso!';
         successMessage.style.display = 'block';
+
+        setTimeout(function () {
+            successMessage.style.display = 'none';
+        }, 3000);
                 
     })
     .catch(error => {
@@ -85,6 +91,10 @@ function NewUser(event) {
         var errorMessage = document.getElementById("error-message");
         errorMessage.innerText = 'Ocorreu um erro no cadastro.';
         errorMessage.style.display = 'block';
+
+        setTimeout(function () {
+            errorMessage.style.display = 'none';
+        }, 3000);
     });
 }
 
@@ -167,7 +177,7 @@ function Mine(event) {
     var publicData = sessionStorage.getItem('public');
 
     var data = {
-        transacoes: transactions,
+        transactions: transactions,
         key_minerador: publicData
     };
 
