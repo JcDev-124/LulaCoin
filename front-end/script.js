@@ -78,7 +78,7 @@ function NewUser(event) {
     })
     .then(user => {
         var successMessage = document.getElementById("success-message");
-        successMessage.innerText = 'Cadastro efetuado com sucesso!';
+        successMessage.innerText = 'Registration successfully Complete!';
         successMessage.style.display = 'block';
 
         setTimeout(function () {
@@ -89,7 +89,7 @@ function NewUser(event) {
     .catch(error => {
         console.error('Erro:', error);
         var errorMessage = document.getElementById("error-message");
-        errorMessage.innerText = 'Ocorreu um erro no cadastro.';
+        errorMessage.innerText = 'An error occurred during registration.';
         errorMessage.style.display = 'block';
 
         setTimeout(function () {
@@ -102,7 +102,7 @@ function NewTransfer(event) {
     event.preventDefault(); 
         
     var receiverKey = document.getElementById("ReceiverKey").value;
-    var password = document.getElementById("TransPassword").value;
+    var password = sessionStorage.getItem('private');
     var value = document.getElementById("TransValor").value;
     var taxa = 0.01;
         
@@ -112,6 +112,7 @@ function NewTransfer(event) {
         taxa: taxa,
         valor: value
     };
+    console.log(data);
         
     fetch('http://localhost:5000/transaction', {
         method: 'POST',
@@ -210,7 +211,7 @@ function Mine(event) {
     });
 }
 
-        //Funções de interface
+//Funções de interface
         document.getElementById('abrirFormulario').addEventListener('click', function() {
             document.getElementById('formularioModal').style.display = 'block';
           });
@@ -226,14 +227,13 @@ function Mine(event) {
             }
           });
 
-          document.addEventListener('DOMContentLoaded', function() {
-            // Recupere os dados da sessionStorage
-            var cpf = sessionStorage.getItem('cpf');
-            var saldo = sessionStorage.getItem('saldo');
-            var sald= document.getElementById('sald');
-            sald.innerText = 'LC ' + saldo;
+document.addEventListener('DOMContentLoaded', function() {
+    var saldo = sessionStorage.getItem('saldo');
+    var sald= document.getElementById('sald');
+    sald.innerHTML = `<p class="saldo">LC ${saldo} </p>`;
+
+
             var publicData = sessionStorage.getItem('public');
-            var privateData = sessionStorage.getItem('private');
             var pass = document.getElementById('TransPassword');
             pass.value = privateData;
         
