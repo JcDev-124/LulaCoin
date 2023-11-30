@@ -24,6 +24,7 @@ def post_block():
 
         key_minerador = data.get("key_minerador")
         processed_data = {"transacoes": []}
+        valor = 0
 
         if isinstance(data.get("transacoes"), list):
             for obj in data["transacoes"]:
@@ -31,7 +32,7 @@ def post_block():
                 public_key = obj.get('public_key')
                 private_key = obj.get('private_key')
                 taxa = obj.get('taxa')
-                valor = obj.get('valor')
+                valor += obj.get('valor')
                 user_service.update_saldo_remetente(private_key, valor)
                 user_service.update_saldo_destinario(public_key, valor)
 

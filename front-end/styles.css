@@ -36,22 +36,27 @@ body {
     margin-bottom: 10px; 
 }
 
+.usuario{
+    color: white;
+    font-family: 'Playfair Display';
+    margin-top: 0;
+    text-decoration: underline;
+    font-size: 2vw;
+}
+
 .box-saldo {
     background-color: #f4f4f4;
     width: 95%;
     height: auto;
     border-radius: 10px;
     margin-top: 20px;
-    display: flex;
-    flex-direction: column; 
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
 }
 
 .saldo{
     font-size: 1.5vw;
     font-weight: bolder;
-    margin: 1%;
+    margin: 5%;
     font-family: 'Playfair Display';
 }
 
@@ -67,6 +72,7 @@ body {
     color: white;
     border: 0px solid white;
     transition: background-color 0.3s ease;
+    cursor: pointer;
 }
 
 .btn-side:hover {
@@ -77,8 +83,8 @@ body {
 h1,h2{
     color: #4f4789;
     font-family: 'Playfair Display';
-    
 }
+
 .main-content {
     flex: 1;
     padding: 20px;
@@ -135,8 +141,20 @@ h1,h2{
     width: 25vh;
 }
 
-.mine-button{
+.reload{
+    background-color: transparent;
+    border: none;
+    color: #4f4789;
+    cursor: pointer;
+}
 
+.reload:hover{
+    background-color: #B7ADFF;
+    color: white;
+    border-radius: 10px;
+}
+
+.mine-button{
     background-color: #4f4789;
     border-radius: 20px;
     width: 20%;
@@ -150,7 +168,7 @@ h1,h2{
     border: 0px solid white;
     font-weight: bolder;
     transition: background-color 0.3s ease;
-    
+    cursor: pointer;
 }
 
 .modal {
@@ -223,10 +241,27 @@ h1,h2{
     color: #4f4789;
   }
 
-  .alert {
+.alert {
     position: absolute;
-    top: 15px; 
+    top: 10px; 
     left: 400px; 
     width: 60%; 
     z-index: 1000; 
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    font-family: 'Verdana';
+}
+
+.alert-success {
+    color: #3c763d; 
+    background-color: #dff0d8; 
+    border: 1px solid #d6e9c6; 
+}
+
+.alert-danger {
+    color: #a94442; 
+    background-color: #f2dede; 
+    border: 1px solid #ebccd1; 
 }

@@ -34,6 +34,7 @@ function Login(event) {
         sessionStorage.setItem('saldo', dados.saldo);
         sessionStorage.setItem('public', dados.public_key);
         sessionStorage.setItem('private', dados.private_key);
+        sessionStorage.setItem('username', username);
         window.location.href = 'dashboard.html';
     })
     .catch(error => {
@@ -126,20 +127,27 @@ function NewTransfer(event) {
             return response.json();
         } else {
             throw new Error('Ocorreu um erro no cadastro');
-            console.log(public_key)
         }
     })
     .then(user => {
         var successMessage = document.getElementById("success-message");
-        successMessage.innerText = 'Transferência efetuada aguarde a validação!';
+        successMessage.innerText = 'Transfer made, wait for validation!';
         successMessage.style.display = 'block';
+
+        setTimeout(function () {
+            successMessage.style.display = 'none';
+        }, 3000);
                 
     })
     .catch(error => {
         console.error('Erro:', error);
         var errorMessage = document.getElementById("error-message");
-        errorMessage.innerText = 'Transferência Falhou';
+        errorMessage.innerText = 'Transfer Failed';
         errorMessage.style.display = 'block';
+
+        setTimeout(function () {
+            errorMessage.style.display = 'none';
+        }, 3000);
     });
 }
 
@@ -166,8 +174,12 @@ function GetTransfer(event) {
     .catch(error => {
         console.error('Erro:', error);
         var errorMessage = document.getElementById("error-message");
-        errorMessage.innerText = 'Falha ao carregar as transferências';
+        errorMessage.innerText = 'Failed to load';
         errorMessage.style.display = 'block';
+
+        setTimeout(function () {
+            errorMessage.style.display = 'none';
+        }, 3000);
     });
 }
 
@@ -179,7 +191,7 @@ function Mine(event) {
     var publicData = sessionStorage.getItem('public');
 
     var data = {
-        transactions: transactions,
+        transacoes: transactions,
         key_minerador: publicData
     };
 
@@ -201,14 +213,22 @@ function Mine(event) {
     })
     .then(user => {
         var successMessage = document.getElementById("success-message");
-        successMessage.innerText = 'Mineração feita com Sucesso!';
+        successMessage.innerText = 'Mining done successfully!';
         successMessage.style.display = 'block';
+
+        setTimeout(function () {
+            successMessage.style.display = 'none';
+        }, 3000);
     })
     .catch(error => {
         console.error('Erro:', error);
         var errorMessage = document.getElementById("error-message");
-        errorMessage.innerText = 'Mineração Falhou';
+        errorMessage.innerText = 'Mining Failed';
         errorMessage.style.display = 'block';
+
+        setTimeout(function () {
+            errorMessage.style.display = 'none';
+        }, 3000);
     });
 }
 
@@ -231,13 +251,12 @@ function Mine(event) {
 document.addEventListener('DOMContentLoaded', function() {
     var saldo = sessionStorage.getItem('saldo');
     var sald= document.getElementById('sald');
-    sald.innerHTML = `<p class="saldo">LC ${saldo} </p>`;
+    sald.innerHTML = `<p class="saldo">LC ${saldo}</p>`;
 
-
-            var publicData = sessionStorage.getItem('public');
-            var pass = document.getElementById('TransPassword');
-            pass.value = privateData;
-        
+    var user = sessionStorage.getItem('username');
+    var Muser= document.getElementById('user');
+    Muser.innerHTML = `<p class="usuario">${user}</p>`;
+    
             // Faça o que for necessário com os dados recuperados
             console.log('CPF:', cpf);
             console.log('Saldo:', saldo);
@@ -249,7 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
             sessionStorage.removeItem('saldo');
             sessionStorage.removeItem('public');
             sessionStorage.removeItem('private');*/
-        });
+    });
         
 //Botões
 var btnTransfer = document.getElementById("btnReload");
