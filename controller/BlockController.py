@@ -37,6 +37,8 @@ def post_block():
                 user_service.update_saldo_destinario(public_key, valor)
 
         user_service.update_saldo_destinario(key_minerador, valor * taxa)
+        block_service.add_block(data)
+
 
         return jsonify({'message': 'Bloco validado'}), 201
     else:
