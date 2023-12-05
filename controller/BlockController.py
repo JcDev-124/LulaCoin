@@ -16,10 +16,10 @@ def post_block():
     if request.is_json:
         data = request.get_json()
         objeto_string = json.dumps(data)
-        #hash = block_service.add_block(objeto_string).get('hash')
-        #print(hash)
-        #nonce_found = block_service.break_hash(hash)
-        #print("Nonce encontrado: ", nonce_found)
+        hash = block_service.add_block(objeto_string).get('hash')
+        print(hash)
+        nonce_found = block_service.break_hash(hash)
+        print("Nonce encontrado: ", nonce_found)
         transaction_service.delete_transcactions(data)
 
         key_minerador = data.get("key_minerador")
@@ -32,7 +32,7 @@ def post_block():
                 public_key = obj.get('public_key')
                 private_key = obj.get('private_key')
                 taxa = obj.get('taxa')
-                valor += obj.get('valor')
+                valor = obj.get('valor')
                 user_service.update_saldo_remetente(private_key, valor)
                 user_service.update_saldo_destinario(public_key, valor)
 

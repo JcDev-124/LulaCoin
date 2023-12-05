@@ -205,7 +205,13 @@ function Mine(event) {
         body: JSON.stringify(data),
     })
     .then(response => {
-        if (response.status === 201) {
+        if (response.status == 201) {
+            var successMessage = document.getElementById("success-message");
+            successMessage.innerText = 'Mining done successfully!';
+            successMessage.style.display = 'block';
+            setTimeout(function () {
+                successMessage.style.display = 'none';
+            }, 3000);
             return response.json();
         } else {
             throw new Error('Falha');

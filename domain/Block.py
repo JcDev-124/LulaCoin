@@ -20,10 +20,11 @@ class Block(Base):
         self.data = data
         self.previous_hash = previous_hash
         self.hash = self.calculate_hash()
-        
-    #Função para o calculo do hash
-    def calculate_hash(self): 
-        sha = hashlib.sha256()
+
+    def calculate_hash(self):
         data_to_hash = f"{self.timestamp}{self.data}{self.previous_hash}".encode('utf-8')
-        sha.update(data_to_hash)
-        return sha.hexdigest()
+
+        sha3_256 = hashlib.sha3_256()
+        sha3_256.update(data_to_hash)
+        return "0000" + sha3_256.hexdigest()
+

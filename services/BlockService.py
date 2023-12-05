@@ -1,5 +1,9 @@
 #Validação antes de entrar no banco de dados
 import hashlib
+import random
+import string
+
+from domain.Block import Block
 
 from database.Connection import DatabaseConnection
 
@@ -14,16 +18,28 @@ class BlockChain:
     def return_blocos(self):
         return self.db_connection.block_repository.return_blocos()
 
-    @classmethod
-    def break_hash(cls, target_hash):
-        nonce = 0
 
-        while True:
-            candidate_hash = hashlib.sha256(str(nonce).encode()).hexdigest()
 
-            if candidate_hash == target_hash:
-                return nonce
-            print("Numero de nonces", nonce)
-            print("Canditado", candidate_hash)
-            nonce += 1
+
+    def break_hash(self, texto_original):
+        def gerar_caractere_aleatorio():
+            caracteres = string.ascii_letters + string.digits
+            return random.choice(caracteres)
+
+        solucao = ""
+        i = 0
+        for caractere_original in texto_original:
+            caractere_adivinhado = gerar_caractere_aleatorio()
+
+            while caractere_adivinhado != caractere_original:
+                caractere_adivinhado = gerar_caractere_aleatorio()
+                i = i + 1
+
+            solucao += caractere_adivinhado
+            print("Solucao parcial:" + solucao)
+            print("           Hash:" + texto_original)
+            print(i)
+        return solucao
+
+
 
