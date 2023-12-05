@@ -35,6 +35,7 @@ function Login(event) {
         sessionStorage.setItem('public', dados.public_key);
         sessionStorage.setItem('private', dados.private_key);
         sessionStorage.setItem('username', username);
+        sessionStorage.setItem('pass', password);
         window.location.href = 'dashboard.html';
     })
     .catch(error => {
@@ -133,6 +134,8 @@ function NewTransfer(event) {
         var successMessage = document.getElementById("success-message");
         successMessage.innerText = 'Transfer made, wait for validation!';
         successMessage.style.display = 'block';
+        var block = document.getElementById("formularioModal");
+        block.style.display = 'none';
 
         setTimeout(function () {
             successMessage.style.display = 'none';
@@ -183,11 +186,45 @@ function GetTransfer(event) {
     });
 }
 
+//Requests
+function Reload() {
+
+    var username = sessionStorage.getItem('username');
+    var password = sessionStorage.getItem('pass');
+
+    var data = {
+        login: username,
+        password: password
+    };
+
+    fetch('http://localhost:5000/users', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            throw new Error('Authentication failed');
+        }
+    })
+    .then(user => {
+        let dados = JSON.parse(user);
+        sessionStorage.setItem('saldo', dados.saldo);
+        window.location.href = 'dashboard.html';
+    })
+    .catch(error => {
+        console.error('Erro:', error);
+    });
+}
+
 function Mine(event) {
     event.preventDefault();
 
     var transactions = transactionsSelected;
-    console.log(transactions);
     var publicData = sessionStorage.getItem('public');
 
     var data = {
@@ -225,6 +262,7 @@ function Mine(event) {
         setTimeout(function () {
             successMessage.style.display = 'none';
         }, 3000);
+        Reload();
     })
     .catch(error => {
         console.error('Erro:', error);
@@ -262,12 +300,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var user = sessionStorage.getItem('username');
     var Muser= document.getElementById('user');
     Muser.innerHTML = `<p class="usuario">${user}</p>`;
-    
-            // Faça o que for necessário com os dados recuperados
-            console.log('CPF:', cpf);
-            console.log('Saldo:', saldo);
-            console.log('Public:', publicData);
-            console.log('Private:', privateData);
         
             /* Limpe os dados da sessionStorage se necessário
             sessionStorage.removeItem('cpf');
@@ -324,3 +356,30 @@ function handleCheckboxChange(transactionId) {
     }
 }
 
+document.getElementById('key').addEventListener('click', function() {
+    // Variável que você quer copiar
+    var variavelDoSistema = sessionStorage.getItem('public');
+
+    // Criando um elemento de texto temporário para armazenar o conteúdo
+    var tempInput = document.createElement('input');
+    tempInput.value = variavelDoSistema;
+    document.body.appendChild(tempInput);
+
+    // Selecionando o conteúdo do elemento de texto temporário
+    tempInput.select();
+    tempInput.setSelectionRange(0, 99999); // Para dispositivos móveis
+
+    // Copiando o conteúdo para a área de transferência
+    document.execCommand('copy');
+
+    // Removendo o elemento de texto temporário
+    document.body.removeChild(tempInput);
+
+    var successMessage = document.getElementById("success-message");
+    successMessage.innerText = 'Your key has been copied';
+    successMessage.style.display = 'block';
+
+    setTimeout(function () {
+        successMessage.style.display = 'none';
+    }, 3000);
+});

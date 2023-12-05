@@ -21,7 +21,7 @@ CREATE TABLE transactions_pending(
 );
 
 CREATE TABLE Blocks (
-    id INTEGER PRIMARY KEY,
+    id INTEGER PRIMARY KEY auto_increment,
     timestamp DATETIME,
     data TEXT,
     previous_hash TEXT,

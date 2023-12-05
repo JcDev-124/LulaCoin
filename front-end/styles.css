@@ -98,12 +98,14 @@ h1,h2{
     text-align: center;
 }
 
+  
 .transaction-container {
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     padding: 10px;
-    height: 50vh;   
+    height: 50vh;
+    overflow: auto; 
 }
 
 #transactionList {
